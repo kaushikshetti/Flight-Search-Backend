@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const authController = require("../controllers/authController");
-const searchController = require("../controllers/searchController");
-const bookingController = require("../controllers/bookingController");
-
+const { login } = require("../controllers/authController");
+const { searchFlights } = require("../controllers/searchController");
+const { bookFlight } = require("../controllers/bookingController");
+const { signUp } = require("../controllers/userController");
 const auth = require("../middleware/auth");
 
-router.post("/login", authController.login);
-router.get("/search", auth, searchController.searchFlights);
-router.post("/book", auth, bookingController.bookFlight);
+router.post("/signup", signUp);
+router.post("/login", login);
+router.get("/search", auth, searchFlights);
+router.post("/book", auth, bookFlight);
 
 module.exports = router;
